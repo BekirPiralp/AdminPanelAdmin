@@ -1,0 +1,10 @@
+user.name=BekirPiralp
+user.email=bpir33@gmail.com
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=https://github.com/BekirPiralp/Admin.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
