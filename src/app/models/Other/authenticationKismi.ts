@@ -1,4 +1,4 @@
-export class MailPasswordToken{
+export class MailPassword{
     public email!:string;
     public password!:string
 }
@@ -9,7 +9,7 @@ export class TokenResponse{
     public sonKullanımTarihi!:Date
 }
 
-export class MailRefresh{
+export class MailRefreshToken{
     public email!:string
     public refreshToken!:string
 }

@@ -1,0 +1,18 @@
+.test{
+    background-color: rgba(0, 0, 255, 0.1);
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    border-color: rgba(0, 0, 255, 1);
+    color: rgba(0, 255, 0, 1);
+    border-block-start-color: aqua;
+    border-left-color: aqua;
+}
+
+.test:hover{
+    background-color: rgba(0, 0, 255, 1);
+    color: white;
+    border-color: white;
+    border-block-end-color: aqua;
+    border-right-color: aqua;
+}
