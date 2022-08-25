@@ -1,7 +1,7 @@
-import { EntityBase } from "../Base/entityBase";
+import { EntityBase } from '../Base/entityBase';
 
-export class Iletisim extends EntityBase{
-    public adres?:string
-    public eposta?:string
-    public tel?:string
+export class Iletisim extends EntityBase {
+  public adres?: string;
+  public eposta?: string;
+  public tel?: string;
 }
