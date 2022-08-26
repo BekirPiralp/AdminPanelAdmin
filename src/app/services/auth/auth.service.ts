@@ -67,7 +67,7 @@ export class AuthService {
     let headers:HttpHeaders=new HttpHeaders();
 
     headers=headers.append("Authorization","Bearer "+this.tokenResponse!.token);
-    this.http.request("delete",this.path + "Login",
+    this.http.request("Delete",this.path + "Login",
     {body:this.decode(),headers:headers})
       .subscribe((data) => {
         //this.TokenReponse=undefined;
@@ -77,6 +77,8 @@ export class AuthService {
         //this.TokenReponse=undefined;
         if(response.status == 400)
         this._alertifyService.hata(response.error);
+        else if (response.status == 0)
+        this._alertifyService.hata("method bulunamadı")
         else
         this._alertifyService.hata(response.error+" status:"+response.status)
       });
