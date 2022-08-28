@@ -3,8 +3,10 @@ import {
   HttpClient,
   HttpContext,
   HttpContextToken,
+  HttpErrorResponse,
   HttpHeaders,
   HttpRequest,
+  HttpResponse,
 } from "@angular/common/http";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import {
@@ -13,6 +15,7 @@ import {
   TokenResponse,
 } from "../../models/Other/authenticationKismi";
 import { AlertifyService } from "../alertify/alertify.service";
+import { catchError, throwError } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -34,9 +37,6 @@ export class AuthService {
         value!.sonKullanımTarihi.toString()
       );
     } else {
-      console.log("geldi");
-      console.log(this.TokenReponse);
-      console.log(value);
       localStorage.removeItem("token");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("sonKullanimTarihi");
@@ -61,7 +61,6 @@ export class AuthService {
   private girilebilirmi = true;
   getToken() {
     if (this.isLogin()) {
-      console.log("isgecerli :" + this.isGecerli());
       if (!this.isGecerli() && this.girilebilirmi) {
         this.loginRefresh();
       }
@@ -91,10 +90,9 @@ export class AuthService {
         this._alertifyService.basarili(
           "Giriş başarılı: " + this.tokenResponse!.token
         );
-        console.log(data);
       },
       (response) => {
-        this.TokenReponse = undefined;
+        this.TokenReponse = null;
         if (response.status == 400) this._alertifyService.hata(response.error);
         else
           this._alertifyService.hata(
@@ -112,10 +110,6 @@ export class AuthService {
         .subscribe(
           (data) => {
             this.TokenReponse = data;
-            this._alertifyService.basarili(
-              "Yenileme başarılı: " + this.tokenResponse!.token
-            );
-            console.log(data);
             this.girilebilirmi = true;
           },
           (response) => {
@@ -136,6 +130,16 @@ export class AuthService {
   logout() {
     this._alertifyService.hata("Çıkış yapılıyor");
     this.TokenReponse = null;
+  }
+
+  
+  create(mailPasswrd:MailPassword){
+    this.http.post<any>(this.path+"Login/Create",mailPasswrd).pipe(catchError((response:HttpErrorResponse)=>{
+      this._alertifyService.hata(`Hata Kod: ${response.status}\n Mesaj: ${response.message}`);
+    return throwError(()=>{})
+    })).subscribe((data)=>{
+      this._alertifyService.basarili("Sİsteme başarı ile kayıt edildi.\n"+data["mail"])
+    })
   }
 
   private decode() {
