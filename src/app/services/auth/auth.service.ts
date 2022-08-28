@@ -142,6 +142,8 @@ export class AuthService {
     })
   }
 
+  
+
   private decode() {
     let mailRefresh: MailRefreshToken = {
       email: this._jwt
