@@ -22,10 +22,14 @@ export class AppComponent {
   }
 
   test2(){
-    this._auth.loginRefresh()
+    console.log(this._auth.getToken())
   }
 
   test3(){
     this._auth.logout()
+  }
+
+  test4(){
+    console.log(this._auth.isLogin())
   }
 }
