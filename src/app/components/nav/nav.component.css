@@ -1,0 +1,64 @@
+.navbar a{
+    position: relative;
+    margin: 0 20px;
+    
+}
+
+.navbar a::after{
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+    border-radius: 3px;
+}
+
+.navbar a:hover::after{
+    width: 100%;
+}
+
+.navbar{
+    display: flex;
+}
+.Logo{
+    font-size: larger;
+    font-weight: bold;
+}
+
+
+
+.test{
+    
+    width: 100%;
+    justify-content: right;
+    display: flex;
+    /* background-color: red; */
+}
+
+.btn{
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    transition: 1.5s;
+}
+
+.btn:hover{
+    background-color: rgba(5, 248, 107, 0.479);
+}
+
+.ara{
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    height: 90%;   
+    border-width: 1px;
+    color: white;
+    text-align: center;
+}
+.ara:hover{
+    /* font-size: larger; */
+    /* height: 100%; */
+}
